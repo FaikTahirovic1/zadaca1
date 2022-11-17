@@ -26,7 +26,7 @@ public class ExpressionEvaulatorTest {
     void testingBrackets(){
         // Testing incorrect input - parentheses error
         String a1 = "( 1 + ( 2 + 3 ) ) ) - 1 + 2 + ( 2 + ( 3 + 4 )";
-        String a2 = "( 4 * 5 + ( sqrt ( ( 32 / 2 ) ) ) )";
+        String a2 = "( 4 * 5 + ( sqrt ( 32 / 2 ) ) )";
         String a3 = "( 3 * 2 + 2 )";
         ExpressionEvaluator s = new ExpressionEvaluator();
         assertAll(
