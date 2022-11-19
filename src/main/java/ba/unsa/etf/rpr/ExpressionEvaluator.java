@@ -21,12 +21,15 @@ public class ExpressionEvaluator {
     public Double evaluate(String str) throws  RuntimeException{
         ops = new Stack<String>();
         vals = new Stack<Double>();
+        boolean lastOpIsSqrt = false;
         int i = 0,br = 1, numberOfLeftParetheses = 0, numberOfRightParentheses = 0, numberOfBasicArm = 0;
         for( String s : str.split(" ")){
             if(str.split(" ").length == 1) throw new RuntimeException("Neispravan izraz");
             if ( numberOfBasicArm > numberOfLeftParetheses) throw new RuntimeException("Neispravne zagrade");
             if ( numberOfLeftParetheses < numberOfRightParentheses) throw new RuntimeException("Neispravne zagrade");
-            if(s.equals("(")) numberOfLeftParetheses++;
+            if(s.equals("(")) {
+                numberOfLeftParetheses++;
+            }
             else if(s.equals(" "));
             else if (s.equals("+")){
                 ops.push(s);
@@ -44,7 +47,10 @@ public class ExpressionEvaluator {
                 ops.push(s);
                 numberOfBasicArm++;
             }
-            else if (s.equals("sqrt"))ops.push(s);
+            else if (s.equals("sqrt")){
+                ops.push(s);
+                lastOpIsSqrt = true;
+            }
             else if (isANumber(s)) vals.push(Double.parseDouble(s));
             else if (s.equals(")")){
                 numberOfRightParentheses++;

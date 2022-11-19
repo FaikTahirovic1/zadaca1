@@ -26,7 +26,7 @@ public class ExpressionEvaulatorTest {
     void testingBrackets(){
         // Testing incorrect input - parentheses error
         String a1 = "( 1 + ( 2 + 3 ) ) ) - 1 + 2 + ( 2 + ( 3 + 4 )";
-        String a2 = "( 4 * 5 + ( sqrt ( 32 / 2 ) ) )";
+        String a2 = "( 1.1 * 5 + ( sqrt ( 32 / 2 ) ) )";
         String a3 = "( 3 * 2 + 2 )";
         ExpressionEvaluator s = new ExpressionEvaluator();
         assertAll(
@@ -69,9 +69,9 @@ public class ExpressionEvaulatorTest {
     void testNegativeRoot(){
         // Testing if sqrt has a negative argument
 
-        String a1 = "( 6 * sqrt ( 3 - 5 ) )";
+        String a1 = "( 6 * sqrt ( ( 3 - 5 ) ) )";
         String a2 = "( sqrt ( 3 - ( 6 * 2 ) ) )";
-        String a3 = "( sqrt ( ( sqrt 4 ) - 5 ) )";
+        String a3 = "( sqrt ( ( sqrt ( 4 ) ) - 5 ) )";
         ExpressionEvaluator s = new ExpressionEvaluator();
         assertAll(
                 "Negative argument for sqrt",
@@ -84,7 +84,7 @@ public class ExpressionEvaulatorTest {
     void testEmptySpaces(){
         // Testing if input has correct form
         String a1 = "()";
-        String a2 = "(sqrt 4 )";
+        String a2 = "(sqrt ( 4 ) )";
         String a3 = "( 3 + ( 2 * * 2 ) )";
         ExpressionEvaluator s = new ExpressionEvaluator();
         assertAll(
@@ -93,9 +93,8 @@ public class ExpressionEvaulatorTest {
                 () -> assertThrows(RuntimeException.class, () -> {s.evaluate(a2);}),
                 () -> assertThrows(RuntimeException.class, () -> {s.evaluate(a3);})
         );
-
-
     }
+
 
 
 }
