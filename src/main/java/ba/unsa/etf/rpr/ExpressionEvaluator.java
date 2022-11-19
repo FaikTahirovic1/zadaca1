@@ -27,9 +27,14 @@ public class ExpressionEvaluator {
             if(str.split(" ").length == 1) throw new RuntimeException("Neispravan izraz");
             if ( numberOfBasicArm > numberOfLeftParetheses) throw new RuntimeException("Neispravne zagrade");
             if ( numberOfLeftParetheses < numberOfRightParentheses) throw new RuntimeException("Neispravne zagrade");
+            if( lastOpIsSqrt){
+                if (s.equals("(")) lastOpIsSqrt = false;
+                else throw new RuntimeException("Nakon sqrt mora ici zagrada");
+            }
             if(s.equals("(")) {
                 numberOfLeftParetheses++;
             }
+
             else if(s.equals(" "));
             else if (s.equals("+")){
                 ops.push(s);

@@ -28,12 +28,14 @@ public class ExpressionEvaulatorTest {
         String a1 = "( 1 + ( 2 + 3 ) ) ) - 1 + 2 + ( 2 + ( 3 + 4 )";
         String a2 = "( 1.1 * 5 + ( sqrt ( 32 / 2 ) ) )";
         String a3 = "( 3 * 2 + 2 )";
+        String a4 = "( sqrt 4 )";
         ExpressionEvaluator s = new ExpressionEvaluator();
         assertAll(
                 "Parentheses",
                 () -> assertThrows(RuntimeException.class, () -> {s.evaluate(a1);}),
                 () -> assertThrows(RuntimeException.class, () -> {s.evaluate(a2);}),
-                () -> assertThrows(RuntimeException.class, () -> {s.evaluate(a3);})
+                () -> assertThrows(RuntimeException.class, () -> {s.evaluate(a3);}),
+                () -> assertThrows(RuntimeException.class, () -> {s.evaluate(a4);})
         );
     }
     @Test
